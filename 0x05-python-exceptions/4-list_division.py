@@ -4,7 +4,7 @@ def list_division(my_list_1, my_list_2, list_length):
     divides element by element 2 lists.
 
     :param my_list_1: first List
-	:param my_list_2: second List
+    :param my_list_2: second List
     :param list_length: list length
     :return: list of division
     """
@@ -12,7 +12,7 @@ def list_division(my_list_1, my_list_2, list_length):
     for i in range(list_length):
         try:
             div = my_list_1[i] / my_list_2[i]
-	
+
         except (ValueError, TypeError):
             div = 0
             print("wrong type")
@@ -24,5 +24,5 @@ def list_division(my_list_1, my_list_2, list_length):
             print("out of range")
         finally:
             new.append(div)
-			
+
     return (new)
