@@ -1,66 +1,66 @@
 #include "lists.h"
 
 /**
- * is_flag - Check if flag
- * @head: Head
+ * is_palindrome - Check if a singly linked list is a palindrome.
+ * @head: Head of the list.
  *
- * Return: 0 or 1
+ * Return: 0 if it is not palindrome, 1 if it is palindrome.
  */
-int is_flag(listint_t **head)
+int is_palindrome(listint_t **head)
 {
-	listint_t *list1, *list2, *head2;
-	int flag = 1;
+	listint_t *fast, *slow, *head2;
+	int palindrome = 1;
 
 	/* Find the center of the list*/
-	list2 = list1 = *head;
-	while (list1 && list1->next)
+	slow = fast = *head;
+	while (fast && fast->next)
 	{
-		list2 = list2->next;
-		list1 = list1->next->next;
+		slow = slow->next;
+		fast = fast->next->next;
 	}
-	if (list1 == NULL)
-		head2 = list2;
+	if (fast == NULL)
+		head2 = slow;
 	else
-		head2 = list2->next;
+		head2 = slow->next;
 
 	/*Reverse the secned half of the list */
-	list2 = NULL;
+	slow = NULL;
 	while (head2 != NULL)
 	{
-		list1 = head2->next;
-		head2->next = list2;
-		list2 = head2;
-		head2 = list1;
+		fast = head2->next;
+		head2->next = slow;
+		slow = head2;
+		head2 = fast;
 	}
-	head2 = list2;
+	head2 = slow;
 
 	/* Compar the first and secend part */
-	list2 = *head;
-	list1 = head2;
-	while (list2 && list1)
+	slow = *head;
+	fast = head2;
+	while (slow && fast)
 	{
-		if (list2->n != list1->n)
+		if (slow->n != fast->n)
 		{
-			flag = 0;
+			palindrome = 0;
 			break;
 		}
-		list2 = list2->next;
-		list1 = list1->next;
+		slow = slow->next;
+		fast = fast->next;
 	}
 
 	/* Rereverse the secend part and linke it to the first part */
-	list2 = NULL;
+	slow = NULL;
 	while (head2 != NULL)
 	{
-		list1 = head2->next;
-		head2->next = list2;
-		list2 = head2;
-		head2 = list1;
+		fast = head2->next;
+		head2->next = slow;
+		slow = head2;
+		head2 = fast;
 	}
-	head2 = list2;
+	head2 = slow;
 
 	/* Return the result */
-	if (flag)
+	if (palindrome)
 		return (1);
 	return (0);
 }
