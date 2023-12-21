@@ -7,11 +7,11 @@ class Square:
     """ Square """
 
     def __init__(self, size=0, position=(0, 0)):
-        """ Initialize a new Square.
+        """ Initialization
 
         Args:
-             size (int): Size of the new Square.
-             position (tuple): The position where to print the square.
+             size (int): Size Square
+             position (tuple): position where to print square
         """
         if isinstance(size, int):
             if size < 0:
@@ -31,18 +31,18 @@ class Square:
     # Getter methods
     @property
     def size(self):
-        """ Retrive the Size of the Square """
+        """ Retrive square Size """
         return (self.__size)
 
     @property
     def position(self):
-        """ retrive the Position of the Square """
+        """ retrive square Position """
         return (self.__position)
 
     # Setter method
     @size.setter
     def size(self, size):
-        """ Set the size of a Square """
+        """ Set size of Square """
         if isinstance(size, int):
             if size < 0:
                 raise ValueError("size must be >= 0")
@@ -52,7 +52,7 @@ class Square:
 
     @position.setter
     def position(self, position):
-        """ Set the position od a Square """
+        """ Set position of Square """
         if not (
                 isinstance(position, tuple)
                 and len(position) == 2
@@ -63,33 +63,33 @@ class Square:
 
     # Methods
     def area(self):
-        """ Return The area of the square """
+        """ calculate area """
         return (self.__size ** 2)
 
     def my_print(self):
-        """ Print the Squar using the charagter # """
+        """ Print Squar using # """
         if self.__size == 0:
             print("")
             return
-        for x in range(self.__position[1]):
+        for y in range(self.__position[1]):
             print("")
-        for a in range(self.__size):
-            for y in range(self.__position[0]):
+        for i in range(self.__size):
+            for x in range(self.__position[0]):
                 print(" ", end="")
-            for b in range(self.__size):
+            for j in range(self.__size):
                 print("#", end="")
             print()
 
     def __str__(self):
-        """ Change result of print() """
+        """ Change print() result """
         if self.__size != 0:
-            for x in range(self.__position[1]):
+            for i in range(self.__position[1]):
                 print("")
-        for i in range(self.__size):
-            for y in range(self.__position[0]):
+        for j in range(self.__size):
+            for x in range(self.__position[0]):
                 print(" ", end="")
-            for z in range(self.__size):
+            for y in range(self.__size):
                 print("#", end="")
-            if a != self.__size - 1:
+            if j != self.__size - 1:
                 print()
         return ("")

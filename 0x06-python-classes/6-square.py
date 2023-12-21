@@ -7,11 +7,11 @@ class Square:
     """ Square """
 
     def __init__(self, size=0, position=(0, 0)):
-        """ Initialize a new Square.
+        """ Initialization
 
         Args:
-             size (int): Size of the new Square.
-             position (tuple): The position where to print the square.
+             size (int): Size of Square
+             position (tuple): position where to print square
         """
         if isinstance(size, int):
             if size < 0:
@@ -71,11 +71,11 @@ class Square:
         if self.__size == 0:
             print("")
             return
-        for y in range(self.__position[1]):
+        for i in range(self.__position[1]):
             print("")
-        for i in range(self.__size):
-            for x in range(self.__position[0]):
+        for x in range(self.__size):
+            for y in range(self.__position[0]):
                 print(" ", end="")
-            for j in range(self.__size):
+            for z in range(self.__size):
                 print("#", end="")
             print()
