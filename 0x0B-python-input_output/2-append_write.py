@@ -1,12 +1,8 @@
 #!/usr/bin/python3
-""" python to Jason """
-import json
+""" Append to file """
 
 
-def to_json_string(my_obj):
-    """ Convert python data to Json string
-
-    Args:
-      my_obj (object): Object to convert
-    """
-    return (json.dumps(my_obj))
+def append_write(filename="", text=""):
+    """ Append text to file """
+    with open(filename, mode='a', encoding='utf-8') as f:
+        return (f.write(text))
