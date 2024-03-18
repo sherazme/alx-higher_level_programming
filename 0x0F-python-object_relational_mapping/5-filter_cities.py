@@ -11,8 +11,8 @@ if __name__ == '__main__':
                          passwd=argv[2], db=argv[3])
 
     cur = db.cursor()
-    qu =  """SELECT c.name FROM cities c\
-          INNER JOIN states s ON s.id = c.state_id\
+    qu = """SELECT c.name FROM cities c
+          INNER JOIN states s ON s.id = c.state_id
           WHERE s.name = %s ORDER BY c.id ASC"""
     cur.execute(qu, [argv[4]])
 
