@@ -12,7 +12,7 @@ if __name__ == '__main__':
 
     cur = db.cursor()
     qu = """SELECT * FROM states where name LIKE BINARY '{}'
-            ORDER BY states.id ASC""".format(sys.argv[4])
+            ORDER BY states.id ASC""".format(argv[4])
     cur.execute(qu)
 
     rows = cur.fetchall()
