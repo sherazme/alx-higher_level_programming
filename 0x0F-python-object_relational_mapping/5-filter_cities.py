@@ -1,24 +1,27 @@
 #!/usr/bin/python3
-"""lists all states from the database"""
+'''Prints cities of given state in database'''
+import sys
 import MySQLdb
-from sys import argv
 
-# The code should not be executed when imported
+
 if __name__ == '__main__':
-
-    # make connection with database
-    db = MySQLdb.connect(host="localhost", port=3306, user=argv[1],
-                         passwd=argv[2], db=argv[3])
-
-    cur = db.cursor()
-    qu = """SELECT c.name FROM cities c
-          INNER JOIN states s ON s.id = c.state_id
-          WHERE s.name = %s ORDER BY c.id ASC"""
-    cur.execute(qu, [argv[4]])
-
-    rows = cur.fetchall()
-    for i in rows:
-        print(i)
-    # Close process
-    cur.close()
-    db.close()
+    if len(sys.argv) >= 5:
+        db_connection = MySQLdb.connect(
+            host='localhost',
+            port=3306,
+            user=sys.argv[1],
+            passwd=sys.argv[2],
+            db=sys.argv[3]
+        )
+        state_name = sys.argv[4]
+        cursor = db_connection.cursor()
+        cursor.execute(
+            'SELECT cities.name FROM cities' +
+            ' INNER JOIN states ON cities.state_id = states.id' +
+            ' WHERE CAST(states.name AS BINARY) = %s' +
+            ' ORDER BY cities.id ASC;',
+            [state_name]
+        )
+        results = cursor.fetchall()
+        print(', '.join(map(lambda x: x[0], results)))
+        db_connection.close()
